@@ -1,0 +1,34 @@
+{
+	"Pages": {
+		"NotFoundPage": {
+			"title": "Error",
+			"description": "We can’t seem to find the page you are looking for!",
+			"button": "Back to Home Page",
+			"copyright": "© Copyright Pouria Darandi. All rights reserved {year}"
+		},
+		"GlobalError": {
+			"title": "Error",
+			"description": "Something went wrong!",
+			"button": "Back to Home Page",
+			"copyright": "© Copyright Pouria Darandi. All rights reserved {year}"
+		},
+		"RootPage": {
+			"test": "This is a test message.",
+			"layout": {
+				"title": "Online Menu",
+				"description": "An online menu dashboard"
+			}
+		}
+	},
+	"Components": {
+		"LanguageSwitcher": {
+			"title": "Change Language"
+		},
+		"ThemeSwitcher": {
+			"title": "Theme",
+			"light": "Light",
+			"dark": "Dark",
+			"system": "System"
+		}
+	}
+}

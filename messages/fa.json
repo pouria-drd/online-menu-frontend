@@ -1,0 +1,34 @@
+{
+	"Pages": {
+		"NotFoundPage": {
+			"title": "خطا",
+			"description": "صفحه‌ای که دنبال آن هستید یافت نشد!",
+			"button": "بازگشت به صفحه اصلی",
+			"copyright": "© کپی‌رایت پوریا دارندی. تمامی حقوق محفوظ است {year}"
+		},
+		"GlobalError": {
+			"title": "خطا",
+			"description": "مشکلی پیش آمد!",
+			"button": "بازگشت به صفحه اصلی",
+			"copyright": "© کپی‌رایت پوریا دارندی. تمامی حقوق محفوظ است {year}"
+		},
+		"RootPage": {
+			"test": "این یک پیام تست است.",
+			"layout": {
+				"title": "منو آنلاین",
+				"description": "داشبورد منوی آنلاین"
+			}
+		}
+	},
+	"Components": {
+		"LanguageSwitcher": {
+			"title": "تغییر زبان"
+		},
+		"ThemeSwitcher": {
+			"title": "حالت نمایش",
+			"light": "روشن",
+			"dark": "تاریک",
+			"system": "سیستمی"
+		}
+	}
+}

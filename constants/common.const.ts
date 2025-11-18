@@ -1,0 +1,34 @@
+import { Language, Theme } from "@/types";
+import { LaptopIcon, MoonIcon, SunIcon } from "lucide-react";
+
+// ============================================================================
+// Preferences
+// ============================================================================
+
+export const Locales = {
+	fa: "fa",
+	en: "en",
+} as const;
+
+export const LANGUAGES: Language[] = [
+	{ code: "fa", label: "فارسی", direction: "rtl" },
+	{ code: "en", label: "English", direction: "ltr" },
+];
+
+export const THEMES: Theme[] = [
+	{
+		value: "light",
+		tKey: "light",
+		icon: SunIcon,
+	},
+	{
+		value: "dark",
+		tKey: "dark",
+		icon: MoonIcon,
+	},
+	{
+		value: "system",
+		tKey: "system",
+		icon: LaptopIcon,
+	},
+];
