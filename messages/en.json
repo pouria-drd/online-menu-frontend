@@ -30,5 +30,17 @@
 			"dark": "Dark",
 			"system": "System"
 		}
+	},
+	"Validations": {
+		"loginSchema": {
+			"username": {
+				"min": "Email/Username is too short",
+				"max": "Email/Username cannot exceed {max} characters",
+				"required": "Email/Username is required"
+			},
+			"password": {
+				"required": "Password is required"
+			}
+		}
 	}
 }

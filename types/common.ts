@@ -1,5 +1,8 @@
 import { Locales } from "@/constants";
 import { ComponentType } from "react";
+import { useTranslations } from "next-intl";
+
+export type Translator = ReturnType<typeof useTranslations>;
 
 // ============================================================================
 // Preferences

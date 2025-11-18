@@ -1,1 +1,1 @@
-export * from "./common.const";
+export * from "./common";
