@@ -18,6 +18,12 @@
 				"title": "Online Menu",
 				"description": "An online menu dashboard"
 			}
+		},
+		"LoginPage": {
+			"layout": {
+				"title": "Login",
+				"description": "Login to your account"
+			}
 		}
 	},
 	"Components": {

@@ -18,6 +18,12 @@
 				"title": "منو آنلاین",
 				"description": "داشبورد منوی آنلاین"
 			}
+		},
+		"LoginPage": {
+			"layout": {
+				"title": "ورود",
+				"description": "ورود به حساب کاربری شما"
+			}
 		}
 	},
 	"Components": {

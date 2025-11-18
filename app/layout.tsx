@@ -2,6 +2,7 @@ import "./assets/styles/globals.css";
 
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { PropsWithChildren } from "react";
 import { NextIntlClientProvider } from "next-intl";
 import { Geist, Geist_Mono } from "next/font/google";
 import { getLocale, getTranslations } from "next-intl/server";
@@ -112,11 +113,7 @@ export async function generateMetadata(): Promise<Metadata> {
 	};
 }
 
-interface RootLayoutProps {
-	children: React.ReactNode;
-}
-
-async function RootLayout({ children }: Readonly<RootLayoutProps>) {
+async function RootLayout({ children }: Readonly<PropsWithChildren>) {
 	const locale = (await getLocale()) as LocaleType;
 	const dir = locale === "fa" ? "rtl" : "ltr";
 
