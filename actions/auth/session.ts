@@ -83,3 +83,13 @@ export async function getSession(): Promise<string | null> {
 		return null;
 	}
 }
+
+/**
+ * Delete the session cookie
+ */
+export async function clearSession(): Promise<void> {
+	const cookieStore = await cookies();
+
+	cookieStore.delete("acs");
+	cookieStore.delete("rfs");
+}

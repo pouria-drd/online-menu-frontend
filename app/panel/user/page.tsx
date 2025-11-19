@@ -1,5 +1,7 @@
-import { getSession } from "@/actions";
 import { redirect } from "next/navigation";
+
+import { getSession } from "@/actions";
+import { LogoutAction } from "@/components/common";
 
 async function UserDashboardPage() {
 	const session = await getSession();
@@ -9,8 +11,10 @@ async function UserDashboardPage() {
 	}
 
 	return (
-		<div>
+		<div className="space-y-8 p-8">
 			<h1>UserDashboardPage</h1>
+
+			<LogoutAction />
 		</div>
 	);
 }

@@ -35,6 +35,11 @@
 			"light": "Light",
 			"dark": "Dark",
 			"system": "System"
+		},
+		"LogoutAction": {
+			"button": "Logout",
+			"message": "Logout successfully!",
+			"error": "An error occurred while logging out!"
 		}
 	},
 	"Forms": {
