@@ -1,12 +1,9 @@
-import { Locales } from "@/constants";
 import { ComponentType } from "react";
 import { useTranslations } from "next-intl";
 
-export type Translator = ReturnType<typeof useTranslations>;
+import { Locales } from "@/constants";
 
-// ============================================================================
-// Preferences
-// ============================================================================
+export type Translator = ReturnType<typeof useTranslations>;
 
 export type Theme = {
 	value: ThemeType;

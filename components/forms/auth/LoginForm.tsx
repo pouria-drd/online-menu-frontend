@@ -76,6 +76,7 @@ function LoginForm() {
 									<Input
 										{...field}
 										type="password"
+										autoComplete="off"
 										id="login-form-password"
 										aria-invalid={fieldState.invalid}
 										placeholder={tForm(

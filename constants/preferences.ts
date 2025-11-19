@@ -1,10 +1,6 @@
 import { Language, Theme } from "@/types";
 import { LaptopIcon, MoonIcon, SunIcon } from "lucide-react";
 
-// ============================================================================
-// Preferences
-// ============================================================================
-
 export const Locales = {
 	fa: "fa",
 	en: "en",
