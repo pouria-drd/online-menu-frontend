@@ -5,5 +5,6 @@ export * from "./input";
 export * from "./label";
 export * from "./button";
 export * from "./sonner";
+export * from "./spinner";
 export * from "./separator";
 export * from "./dropdown-menu";

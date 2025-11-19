@@ -37,8 +37,41 @@
 			"system": "System"
 		}
 	},
+	"Forms": {
+		"LoginForm": {
+			"title": "Login to your account",
+			"description": "Enter your credentials to login to your account!",
+			"fields": {
+				"username": {
+					"label": "Username",
+					"placeholder": "Enter your username",
+					"code": {
+						"blank": "Username cannot be blank.",
+						"required": "Username is required."
+					}
+				},
+				"password": {
+					"label": "Password",
+					"placeholder": "Enter your password",
+					"code": {
+						"blank": "Password cannot be blank.",
+						"required": "Password is required."
+					}
+				}
+			},
+			"submit": "Login",
+			"message": "Don't have an account?",
+			"register": "Register here",
+			"status": {
+				"success": "You have successfully logged in!",
+				"failed": "An error occurred while logging in!",
+				"invalid_credentials": "Username or password is invalid!",
+				"too_many_requests": "Too many requests. Please try again later."
+			}
+		}
+	},
 	"Validations": {
-		"loginSchema": {
+		"LoginSchema": {
 			"username": {
 				"min": "Email/Username is too short",
 				"max": "Email/Username cannot exceed {max} characters",

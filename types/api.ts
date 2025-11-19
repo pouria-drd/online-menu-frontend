@@ -1,13 +1,43 @@
-export interface ApiSuccess<T> {
+/**
+ * A single backend error item
+ */
+interface BackendErrorItem {
+	message: string;
+	code?: string;
+}
+
+/**
+ * Backend errors keyed by form field names
+ */
+export type BackendErrors<TFields extends string = string> = Partial<
+	Record<TFields, BackendErrorItem[]>
+>;
+
+interface BaseApi {
+	statusCode: number;
+}
+
+/**
+ * Successful API response
+ */
+export interface ApiSuccess<T> extends BaseApi {
 	success: true;
 	message: string;
 	result: T;
 }
 
-export interface ApiError<E> {
+/**
+ * Failed API response
+ */
+export interface ApiError<TFields extends string = string> extends BaseApi {
 	success: false;
 	message: string;
-	errors: E;
+	errors: BackendErrors<TFields>;
 }
 
-export type ApiResponse<T, E> = ApiSuccess<T> | ApiError<E>;
+/**
+ * Generic API response type
+ */
+export type ApiResponse<T, TFields extends string = string> =
+	| ApiSuccess<T>
+	| ApiError<TFields>;
