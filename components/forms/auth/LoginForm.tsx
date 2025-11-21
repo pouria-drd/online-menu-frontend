@@ -36,23 +36,24 @@ function LoginForm() {
 					id="login-form"
 					onSubmit={loginForm.handleSubmit(handleSubmit)}>
 					<FieldGroup>
-						{/* Username */}
+						{/* Email */}
 						<Controller
-							name="username"
+							name="email"
 							control={loginForm.control}
 							render={({ field, fieldState }) => (
 								<Field data-invalid={fieldState.invalid}>
-									<FieldLabel htmlFor="login-form-username">
-										{tForm("fields.username.label")}
+									<FieldLabel htmlFor="login-form-email">
+										{tForm("fields.email.label")}
 									</FieldLabel>
 									<Input
 										{...field}
 										autoFocus
-										autoComplete="off"
-										id="login-form-username"
+										type="email"
+										autoComplete="email"
+										id="login-form-email"
 										aria-invalid={fieldState.invalid}
 										placeholder={tForm(
-											"fields.username.placeholder",
+											"fields.email.placeholder",
 										)}
 									/>
 									{fieldState.invalid && (

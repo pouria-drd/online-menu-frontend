@@ -47,12 +47,13 @@
 			"title": "Login to your account",
 			"description": "Enter your credentials to login to your account!",
 			"fields": {
-				"username": {
-					"label": "Username",
-					"placeholder": "Enter your username",
+				"email": {
+					"label": "Email",
+					"placeholder": "Enter your email",
 					"code": {
-						"blank": "Username cannot be blank.",
-						"required": "Username is required."
+						"blank": "Email cannot be blank.",
+						"required": "Email is required.",
+						"invalid": "Email is invalid."
 					}
 				},
 				"password": {
@@ -60,7 +61,8 @@
 					"placeholder": "Enter your password",
 					"code": {
 						"blank": "Password cannot be blank.",
-						"required": "Password is required."
+						"required": "Password is required.",
+						"invalid": "Password is invalid."
 					}
 				}
 			},
@@ -70,20 +72,25 @@
 			"status": {
 				"success": "You have successfully logged in!",
 				"failed": "An error occurred while logging in!",
-				"invalid_credentials": "Username or password is invalid!",
-				"too_many_requests": "Too many requests. Please try again later."
+				"invalid_credentials": "Email or password is invalid!",
+				"too_many_requests": "Too many requests. Please try again later.",
+				"unauthorized": "You are not authorized to access this resource.",
+				"forbidden": "You are not authorized to access this resource.",
+				"server_error": "Something went wrong on our end. Please try again later."
 			}
 		}
 	},
 	"Validations": {
 		"LoginSchema": {
-			"username": {
-				"min": "Email/Username is too short",
-				"max": "Email/Username cannot exceed {max} characters",
-				"required": "Email/Username is required"
+			"email": {
+				"invalid": "Email is invalid",
+				"required": "Email is required",
+				"blank": "Email cannot be blank"
 			},
 			"password": {
-				"required": "Password is required"
+				"required": "Password is required",
+				"blank": "Password cannot be blank",
+				"invalid": "Password is invalid"
 			}
 		}
 	}

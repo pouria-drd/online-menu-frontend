@@ -1,7 +1,7 @@
 /**
  * A single backend error item
  */
-interface BackendErrorItem {
+export interface BackendErrorItem {
 	message: string;
 	code?: string;
 }
@@ -12,6 +12,13 @@ interface BackendErrorItem {
 export type BackendErrors<TFields extends string = string> = Partial<
 	Record<TFields, BackendErrorItem[]>
 >;
+
+export type BackendErrorInput =
+	| BackendErrorItem
+	| BackendErrorItem[]
+	| string
+	| null
+	| undefined;
 
 interface BaseApi {
 	statusCode: number;

@@ -30,7 +30,7 @@ function useLoginForm() {
 	const loginForm = useForm<LoginFormData>({
 		resolver: zodResolver(schema),
 		defaultValues: {
-			username: "",
+			email: "",
 			password: "",
 		},
 	});
@@ -45,7 +45,7 @@ function useLoginForm() {
 
 	/**
 	 * Handles login form submission
-	 * @param data - Form data (username and password)
+	 * @param data - Form data (email and password)
 	 */
 	async function handleSubmit(data: LoginFormData) {
 		setIsSubmitting(true);
@@ -53,17 +53,13 @@ function useLoginForm() {
 			const response = await loginAction(data);
 
 			if (!response.success) {
-				if (response.statusCode === 429) {
-					handleGlobalError(tForm("status.too_many_requests"));
-					return;
-				}
-
-				handleServerError<LoginFormData>(
-					response.errors,
-					loginForm.setError,
-					tForm,
-					handleGlobalError,
-				);
+				handleServerError<LoginFormData>({
+					statusCode: response.statusCode,
+					errors: response.errors,
+					setError: loginForm.setError,
+					translate: tForm,
+					setGlobalError: handleGlobalError,
+				});
 				return;
 			}
 

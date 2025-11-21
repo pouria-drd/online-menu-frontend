@@ -16,7 +16,6 @@ export type LoginApiError = BackendErrors<keyof LoginFormData & string>;
  * Backend success type for login API
  */
 export interface LoginApiSuccess {
-	username: string;
 	access: string;
 	refresh: string;
 }
