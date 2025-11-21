@@ -36,6 +36,15 @@
 			"dark": "Dark",
 			"system": "System"
 		},
+		"LoginAction": {
+			"title": "Login to your account",
+			"description": "Enter your credentials to login to your account!",
+			"otp": "OTP",
+			"password": "Password",
+			"submit": "Login",
+			"message": "Don't have an account?",
+			"register": "Register here"
+		},
 		"LogoutAction": {
 			"button": "Logout",
 			"message": "Logout successfully!",
@@ -78,6 +87,51 @@
 				"forbidden": "You are not authorized to access this resource.",
 				"server_error": "Something went wrong on our end. Please try again later."
 			}
+		},
+		"SendOTPLoginForm": {
+			"fields": {
+				"email": {
+					"label": "Email",
+					"placeholder": "Enter your email",
+					"code": {
+						"blank": "Email cannot be blank.",
+						"required": "Email is required.",
+						"invalid": "Email is invalid."
+					}
+				}
+			},
+			"submit": "Send OTP",
+			"status": {
+				"success": "OTP sent successfully!",
+				"failed": "An error occurred while sending OTP login!",
+				"otp_exists": "OTP already sent!, wait for 5 minutes and try again.",
+				"too_many_requests": "Too many requests. Please try again later.",
+				"unauthorized": "You are not authorized to access this resource.",
+				"forbidden": "You are not authorized to access this resource.",
+				"server_error": "Something went wrong on our end. Please try again later."
+			}
+		},
+		"VerifyOTPLoginForm": {
+			"fields": {
+				"email": {
+					"label": "Email",
+					"placeholder": "Enter your email"
+				},
+				"code": {
+					"label": "Code"
+				}
+			},
+			"submit": "Verify OTP",
+			"edit": "Edit email",
+			"status": {
+				"success": "OTP verified successfully!",
+				"failed": "An error occurred while verifying OTP!",
+				"invalid_otp": "Invalid or expired OTP!",
+				"too_many_requests": "Too many requests. Please try again later.",
+				"unauthorized": "You are not authorized to access this resource.",
+				"forbidden": "You are not authorized to access this resource.",
+				"server_error": "Something went wrong on our end. Please try again later."
+			}
 		}
 	},
 	"Validations": {
@@ -91,6 +145,18 @@
 				"required": "Password is required",
 				"blank": "Password cannot be blank",
 				"invalid": "Password is invalid"
+			}
+		},
+		"OTPLoginSchema": {
+			"email": {
+				"invalid": "Email is invalid",
+				"required": "Email is required",
+				"blank": "Email cannot be blank"
+			},
+			"code": {
+				"invalid": "OTP is invalid",
+				"required": "OTP is required",
+				"blank": "OTP cannot be blank"
 			}
 		}
 	}

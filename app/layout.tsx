@@ -9,7 +9,7 @@ import { getLocale, getTranslations } from "next-intl/server";
 
 import { LocaleType } from "@/types";
 import { Toaster } from "@/components/ui";
-import { ThemeProvider } from "@/components/context";
+import { ThemeProvider } from "@/components/preferences";
 // import { Navbar, Footer } from "@/components/layouts";
 
 const geistSans = Geist({

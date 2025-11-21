@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 
 import { getSession } from "@/actions";
-import { LoginForm } from "@/components/forms";
+import { LoginAction } from "@/components/auth";
 
 async function LoginPage() {
 	const session = await getSession();
@@ -11,7 +11,7 @@ async function LoginPage() {
 
 	return (
 		<div className="flex items-center justify-center h-dvh">
-			<LoginForm />
+			<LoginAction />
 		</div>
 	);
 }
