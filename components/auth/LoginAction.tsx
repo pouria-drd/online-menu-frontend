@@ -25,8 +25,8 @@ function LoginAction() {
 	const t = useTranslations("Components.LoginAction");
 
 	return (
-		<Card className="w-full sm:max-w-xs gap-4">
-			<CardHeader className="flex flex-col items-center justify-center text-center">
+		<Card className="w-full sm:max-w-[340px] gap-4 shadow-xl">
+			<CardHeader className="flex flex-col items-center justify-center text-center pt-2">
 				<AppLogo />
 				<CardTitle>{t("title")}</CardTitle>
 				<CardDescription>{t("description")}</CardDescription>
@@ -36,7 +36,7 @@ function LoginAction() {
 					dir={locale === "fa" ? "rtl" : "ltr"}
 					defaultValue="password"
 					className="items-center justify-center w-full">
-					<TabsList className="grid grid-cols-2 mb-2 w-full">
+					<TabsList className="grid grid-cols-2 mb-3 w-full">
 						<TabsTrigger value="password">
 							{t("password")}
 						</TabsTrigger>

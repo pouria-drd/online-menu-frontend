@@ -24,6 +24,12 @@
 				"title": "ورود",
 				"description": "ورود به حساب کاربری شما"
 			}
+		},
+		"RegisterPage": {
+			"layout": {
+				"title": "ثبت نام",
+				"description": "ثبت نام یک حساب جدید"
+			}
 		}
 	},
 	"Components": {
