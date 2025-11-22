@@ -133,6 +133,7 @@
 				"success": "OTP verified successfully!",
 				"failed": "An error occurred while verifying OTP!",
 				"invalid_otp": "Invalid or expired OTP!",
+				"user_not_found": "There is no user with this email!",
 				"too_many_requests": "Too many requests. Please try again later.",
 				"unauthorized": "You are not authorized to access this resource.",
 				"forbidden": "You are not authorized to access this resource.",
