@@ -87,6 +87,7 @@
 			"status": {
 				"success": "You have successfully logged in!",
 				"failed": "An error occurred while logging in!",
+				"inactive": "Your account is inactive!",
 				"invalid_credentials": "Email or password is invalid!",
 				"too_many_requests": "Too many requests. Please try again later.",
 				"unauthorized": "You are not authorized to access this resource.",

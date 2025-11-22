@@ -17,7 +17,22 @@ export async function createSession(
 
 	// Calculate remaining lifetime (in seconds)
 	const now = Math.floor(Date.now() / 1000);
-	const expiresIn = decoded.exp ? decoded.exp - now : 60 * 60 * 24; // fallback to 1 day
+
+	let expiresIn;
+
+	if (decoded.exp) {
+		expiresIn = decoded.exp - now;
+	} else {
+		// if no exp and type is rfs, fallback to 1 day
+		if (type === "rfs") {
+			expiresIn = 60 * 60 * 24;
+		}
+
+		// if no exp and type is acs, fallback to 15 minutes
+		else {
+			expiresIn = 60 * 15;
+		}
+	}
 
 	// Prevent negative maxAge in case token already expired
 	const maxAge = Math.max(expiresIn - 5, 0); // expire 5s earlier just in case token is expired
