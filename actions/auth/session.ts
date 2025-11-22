@@ -4,49 +4,62 @@ import { jwtDecode } from "jwt-decode";
 import { cookies } from "next/headers";
 import { SessionType, UserPayload } from "@/types";
 
+// ============================
+// Constants
+// ============================
+
+const FIFTEEN_MIN = 60 * 15;
+const ONE_DAY = 60 * 60 * 24;
+
+// ============================
+// Helpers
+// ============================
+
+function getDefaultExpiry(type: SessionType): number {
+	return type === "rfs" ? ONE_DAY : FIFTEEN_MIN;
+}
+
+function calculateMaxAge(
+	decodedExp: number | undefined,
+	fallback: number,
+): number {
+	const now = Math.floor(Date.now() / 1000);
+
+	if (decodedExp) {
+		const expiresIn = decodedExp - now;
+		return Math.max(expiresIn - 5, 0); // expire slightly earlier
+	}
+
+	return fallback;
+}
+
+// ============================
+// Session Management
+// ============================
+
 /**
- * Create a session cookie from a JWT token
- * @param token - The JWT token to create a session cookie from
- * @param type - The type of session token to create (acs or rfs)
+ * Store JWT token as a secure session cookie.
+ * @param token - The JWT token to store as a session cookie.
+ * @param type - The type of session token to store (acs or rfs).
  */
 export async function createSession(
 	token: string,
 	type: SessionType = "acs",
 ): Promise<void> {
+	const cookieStore = await cookies();
 	const decoded = jwtDecode<UserPayload>(token);
 
-	// Calculate remaining lifetime (in seconds)
-	const now = Math.floor(Date.now() / 1000);
-
-	let expiresIn;
-
-	if (decoded.exp) {
-		expiresIn = decoded.exp - now;
-	} else {
-		// if no exp and type is rfs, fallback to 1 day
-		if (type === "rfs") {
-			expiresIn = 60 * 60 * 24;
-		}
-
-		// if no exp and type is acs, fallback to 15 minutes
-		else {
-			expiresIn = 60 * 15;
-		}
-	}
-
-	// Prevent negative maxAge in case token already expired
-	const maxAge = Math.max(expiresIn - 5, 0); // expire 5s earlier just in case token is expired
-
-	const cookieStore = await cookies();
+	const fallback = getDefaultExpiry(type);
+	const maxAge = calculateMaxAge(decoded.exp, fallback);
 
 	cookieStore.set({
 		name: type,
 		value: token,
-		path: "/",
 		httpOnly: true,
 		secure: true,
 		sameSite: "lax",
-		maxAge, // dynamically set from token exp
+		path: "/",
+		maxAge,
 	});
 }
 
