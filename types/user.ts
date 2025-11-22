@@ -1,8 +1,6 @@
-import { SessionType } from "@/constants";
-
 export type UserRole = "admin" | "user";
 
-export type SessionType = keyof typeof SessionType;
+export type SessionType = "acs" | "rfs";
 
 export interface UserPayload {
 	iss?: string | undefined;

@@ -5,7 +5,7 @@ import { useLocale, useTranslations } from "next-intl";
 
 import { LocaleType } from "@/types";
 import { AppLogo } from "@/components/images";
-import { LoginForm, OTPLoginForm } from "./forms";
+import { LoginForm, OTPForm } from "./forms";
 import {
 	Button,
 	Card,
@@ -48,7 +48,7 @@ function LoginAction() {
 					</TabsContent>
 
 					<TabsContent value="otp" className="w-full">
-						<OTPLoginForm />
+						<OTPForm otpType="login" />
 					</TabsContent>
 				</Tabs>
 			</CardContent>

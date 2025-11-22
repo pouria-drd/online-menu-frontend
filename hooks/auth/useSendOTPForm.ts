@@ -6,25 +6,25 @@ import { useForm } from "react-hook-form";
 import { useTranslations } from "next-intl";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { SendOTPLoginFormData } from "@/types";
-import { SendOTPLoginAction } from "@/actions";
+import { SendOTPAction } from "@/actions";
 import { handleServerError } from "@/lib/utils";
-import { sendOTPLoginSchema } from "@/lib/validations";
+import { sendOTPSchema } from "@/lib/validations";
+import { OTPType, SendOTPFormData } from "@/types";
 
-function useSendOTPLoginForm() {
+function useSendOTPForm(otpType: OTPType) {
 	// Router
 	const [otpSent, setOTPSent] = useState(false);
 	const [isSubmitting, setIsSubmitting] = useState(false);
 
 	// translations
-	const tForm = useTranslations("Forms.SendOTPLoginForm");
-	const tVal = useTranslations("Validations.OTPLoginSchema");
+	const tForm = useTranslations("Forms.SendOTPForm");
+	const tVal = useTranslations("Validations.OTPSchema");
 
 	// Send OTP login form and validation schema
-	const sendOTPSchema = sendOTPLoginSchema(tVal);
+	const schema = sendOTPSchema(tVal);
 
-	const sendOTPLoginForm = useForm<SendOTPLoginFormData>({
-		resolver: zodResolver(sendOTPSchema),
+	const sendOTPForm = useForm<SendOTPFormData>({
+		resolver: zodResolver(schema),
 		defaultValues: {
 			email: "",
 		},
@@ -42,18 +42,18 @@ function useSendOTPLoginForm() {
 	 * Handles login form submission
 	 * @param data - Form data (email and password)
 	 */
-	async function handleSubmit(data: SendOTPLoginFormData) {
+	async function handleSubmit(data: SendOTPFormData) {
 		setIsSubmitting(true);
 		try {
-			const response = await SendOTPLoginAction(data);
+			const response = await SendOTPAction(data, otpType);
 
 			if (!response.success) {
 				setOTPSent(false);
 
-				handleServerError<SendOTPLoginFormData>({
+				handleServerError<SendOTPFormData>({
 					statusCode: response.statusCode,
 					errors: response.errors,
-					setError: sendOTPLoginForm.setError,
+					setError: sendOTPForm.setError,
 					translate: tForm,
 					setGlobalError: handleGlobalError,
 				});
@@ -82,9 +82,9 @@ function useSendOTPLoginForm() {
 		tForm,
 		otpSent,
 		isSubmitting,
-		sendOTPLoginForm,
+		sendOTPForm,
 		handleSubmit,
 	};
 }
 
-export default useSendOTPLoginForm;
+export default useSendOTPForm;

@@ -7,12 +7,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useEffectEvent, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
-import { VerifyOTPLoginFormData } from "@/types";
 import { handleServerError } from "@/lib/utils";
-import { verifyOTPLoginSchema } from "@/lib/validations";
-import { createSession, VerifyOTPLoginAction } from "@/actions";
+import { verifyOTPSchema } from "@/lib/validations";
+import { OTPType, VerifyOTPFormData } from "@/types";
+import { createSession, VerifyOTPAction } from "@/actions";
 
-function useVerifyOTPLogin(email: string) {
+function useVerifyOTForm(email: string, otpType: OTPType) {
 	// Router
 	const router = useRouter();
 	const searchParams = useSearchParams();
@@ -21,14 +21,14 @@ function useVerifyOTPLogin(email: string) {
 	const [isSubmitting, setIsSubmitting] = useState(false);
 
 	// translations
-	const tForm = useTranslations("Forms.VerifyOTPLoginForm");
-	const tVal = useTranslations("Validations.OTPLoginSchema");
+	const tForm = useTranslations("Forms.VerifyOTPForm");
+	const tVal = useTranslations("Validations.OTPSchema");
 
 	// Verify OTP login form and validation schema
-	const verifyOTPSchema = verifyOTPLoginSchema(tVal);
+	const schema = verifyOTPSchema(tVal);
 
-	const verifyOTPLoginForm = useForm<VerifyOTPLoginFormData>({
-		resolver: zodResolver(verifyOTPSchema),
+	const verifyOTPForm = useForm<VerifyOTPFormData>({
+		resolver: zodResolver(schema),
 		defaultValues: {
 			email: "",
 			code: "",
@@ -36,7 +36,7 @@ function useVerifyOTPLogin(email: string) {
 	});
 
 	const onEmailChange = useEffectEvent(() => {
-		verifyOTPLoginForm.reset({ email, code: "" });
+		verifyOTPForm.reset({ email, code: "" });
 	});
 
 	useEffect(() => {
@@ -57,16 +57,16 @@ function useVerifyOTPLogin(email: string) {
 	 * Handles login form submission
 	 * @param data - Form data (email and password)
 	 */
-	async function handleSubmit(data: VerifyOTPLoginFormData) {
+	async function handleSubmit(data: VerifyOTPFormData) {
 		setIsSubmitting(true);
 		try {
-			const response = await VerifyOTPLoginAction(data);
+			const response = await VerifyOTPAction(data, otpType);
 
 			if (!response.success) {
-				handleServerError<VerifyOTPLoginFormData>({
+				handleServerError<VerifyOTPFormData>({
 					statusCode: response.statusCode,
 					errors: response.errors,
-					setError: verifyOTPLoginForm.setError,
+					setError: verifyOTPForm.setError,
 					translate: tForm,
 					setGlobalError: handleGlobalError,
 				});
@@ -81,7 +81,7 @@ function useVerifyOTPLogin(email: string) {
 				await createSession(response.result.access, "acs");
 				await createSession(response.result.refresh, "rfs");
 				// Reset form
-				verifyOTPLoginForm.reset();
+				verifyOTPForm.reset();
 				// Redirect to dashboard page or next link
 				const redirectTo = next ?? "/panel/user";
 				router.push(redirectTo as "/");
@@ -100,9 +100,9 @@ function useVerifyOTPLogin(email: string) {
 	return {
 		tForm,
 		isSubmitting,
-		verifyOTPLoginForm,
+		verifyOTPForm,
 		handleSubmit,
 	};
 }
 
-export default useVerifyOTPLogin;
+export default useVerifyOTForm;

@@ -1,10 +1,11 @@
 "use server";
 
 import {
-	SendOTPLoginFormData,
-	SendOTPLoginResponse,
-	VerifyOTPLoginFormData,
-	VerifyOTPLoginResponse,
+	OTPType,
+	SendOTPFormData,
+	SendOTPResponse,
+	VerifyOTPFormData,
+	VerifyOTPResponse,
 } from "@/types";
 
 /**
@@ -12,11 +13,18 @@ import {
  * @param data - The email to send OTP login to
  * @returns - Send OTP login response
  */
-export async function SendOTPLoginAction(
-	data: SendOTPLoginFormData,
-): Promise<SendOTPLoginResponse> {
+export async function SendOTPAction(
+	data: SendOTPFormData,
+	otpType: OTPType,
+): Promise<SendOTPResponse> {
 	// build api url
-	const apiUrl = `${process.env.BASE_API_URL}/authentication/login/send-otp/`;
+	const apiUrl = `${process.env.BASE_API_URL}/authentication/otp/send/`;
+
+	const body = JSON.stringify({
+		email: data.email,
+		otp_type: otpType,
+	});
+
 	// send request
 	const response = await fetch(apiUrl, {
 		method: "POST",
@@ -24,11 +32,11 @@ export async function SendOTPLoginAction(
 			"Content-Type": "application/json",
 			Accept: "application/json",
 		},
-		body: JSON.stringify(data),
+		body: body,
 	});
 	// parse response
 	const jsonResponse = await response.json();
-	const res = jsonResponse as SendOTPLoginResponse;
+	const res = jsonResponse as SendOTPResponse;
 	// return response
 	return {
 		...res,
@@ -41,11 +49,12 @@ export async function SendOTPLoginAction(
  * @param data - The OTP login data (email and code)
  * @returns - Verify OTP login response
  */
-export async function VerifyOTPLoginAction(
-	data: VerifyOTPLoginFormData,
-): Promise<VerifyOTPLoginResponse> {
+export async function VerifyOTPAction(
+	data: VerifyOTPFormData,
+	otpType: OTPType,
+): Promise<VerifyOTPResponse> {
 	// build api url
-	const apiUrl = `${process.env.BASE_API_URL}/authentication/login/verify-otp/`;
+	const apiUrl = `${process.env.BASE_API_URL}/authentication/otp/${otpType}/`;
 	// send request
 	const response = await fetch(apiUrl, {
 		method: "POST",
@@ -57,7 +66,7 @@ export async function VerifyOTPLoginAction(
 	});
 	// parse response
 	const jsonResponse = await response.json();
-	const res = jsonResponse as VerifyOTPLoginResponse;
+	const res = jsonResponse as VerifyOTPResponse;
 	// return response
 	return {
 		...res,

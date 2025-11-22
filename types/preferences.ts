@@ -1,8 +1,6 @@
 import { ComponentType } from "react";
 import { useTranslations } from "next-intl";
 
-import { Locales } from "@/constants";
-
 export type Translator = ReturnType<typeof useTranslations>;
 
 export type Theme = {
@@ -11,7 +9,7 @@ export type Theme = {
 	icon: ComponentType<{ className?: string }>;
 };
 
-export type LocaleType = keyof typeof Locales;
+export type LocaleType = "en" | "fa";
 
 export type Language = {
 	code: LocaleType;

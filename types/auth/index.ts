@@ -1,2 +1,2 @@
+export * from "./otp";
 export * from "./login";
-export * from "./otpLogin";

@@ -95,7 +95,7 @@
 				"server_error": "Something went wrong on our end. Please try again later."
 			}
 		},
-		"SendOTPLoginForm": {
+		"SendOTPForm": {
 			"fields": {
 				"email": {
 					"label": "Email",
@@ -103,7 +103,8 @@
 					"code": {
 						"blank": "Email cannot be blank.",
 						"required": "Email is required.",
-						"invalid": "Email is invalid."
+						"invalid": "Email is invalid.",
+						"user_not_found": "There is no user with this email!"
 					}
 				}
 			},
@@ -111,6 +112,8 @@
 			"status": {
 				"success": "OTP sent successfully!",
 				"failed": "An error occurred while sending OTP login!",
+				"inactive": "Your account is inactive!",
+				"user_not_found": "There is no user with this email!",
 				"otp_exists": "OTP already sent!, wait for 5 minutes and try again.",
 				"too_many_requests": "Too many requests. Please try again later.",
 				"unauthorized": "You are not authorized to access this resource.",
@@ -118,7 +121,7 @@
 				"server_error": "Something went wrong on our end. Please try again later."
 			}
 		},
-		"VerifyOTPLoginForm": {
+		"VerifyOTPForm": {
 			"fields": {
 				"email": {
 					"label": "Email",
@@ -133,6 +136,7 @@
 			"status": {
 				"success": "OTP verified successfully!",
 				"failed": "An error occurred while verifying OTP!",
+				"inactive": "Your account is inactive!",
 				"invalid_otp": "Invalid or expired OTP!",
 				"user_not_found": "There is no user with this email!",
 				"too_many_requests": "Too many requests. Please try again later.",
@@ -155,7 +159,7 @@
 				"invalid": "Password is invalid"
 			}
 		},
-		"OTPLoginSchema": {
+		"OTPSchema": {
 			"email": {
 				"invalid": "Email is invalid",
 				"required": "Email is required",
